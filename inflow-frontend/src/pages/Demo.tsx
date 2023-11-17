@@ -1,6 +1,17 @@
 import { Heading, Box, Button } from '@chakra-ui/react';
+import { createEmbedSdkInstance } from '../api/onramp-unlimit';
 
 const Demo = () => {
+
+    const handleClick = () => {
+        // Define your parameters here
+        const address = "0xFcf6544597778DA948CE76D148819c612F0e0325";
+        const amount = "1";
+
+        // Create SDK instance
+        const sdkInstance = createEmbedSdkInstance(address, amount);
+        
+    };
 
     return( 
         <Box
@@ -14,7 +25,7 @@ const Demo = () => {
         >
 
         <Heading> This is the demo </Heading>
-        <Button> Pay with InFlow</Button>
+        <Button onClick={handleClick}> Pay with InFlow</Button>
 
         </Box>
     )

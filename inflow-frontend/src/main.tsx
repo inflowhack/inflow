@@ -1,25 +1,25 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import Home from './pages/Home.tsx'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ChakraProvider } from '@chakra-ui/react'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Home from "./pages/Home.tsx";
+import Demo from "./pages/Demo.tsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 
-import './index.css'
+import Fonts from "./utils/fonts.tsx";
+import theme from "./utils/theme.tsx";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-    <ChakraProvider>
-    <Routes> 
-
-
-        <Route path="/" element={<Home/>}/> 
- 
-
-    </Routes> 
-    </ChakraProvider>
-
+      <ChakraProvider theme={theme}>
+        <Fonts />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/demo" element={<Demo />} />
+        </Routes>
+      </ChakraProvider>
     </BrowserRouter>
-
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

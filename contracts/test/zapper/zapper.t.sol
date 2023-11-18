@@ -140,7 +140,7 @@ contract ZapperTest is OffChainCalls {
         _setUpVaultAndZapper();
         _getTokenIn(params);
         if (keccak256(swapData) == keccak256(hex"")) vm.expectRevert();
-        zapper.zapAndDoSomething(
+        zapper.zap(
             params.tokenIn,
             params.tokenOut,
             params.router,
@@ -155,7 +155,7 @@ contract ZapperTest is OffChainCalls {
         _setUpVaultAndZapper();
         _getTokenIn(params);
         vm.expectRevert();
-        zapper.zapAndDoSomething(
+        zapper.zap(
             params.tokenIn,
             params.tokenOut,
             params.router,
@@ -170,7 +170,7 @@ contract ZapperTest is OffChainCalls {
         _setUpVaultAndZapper();
         _getTokenIn(params);
         if (keccak256(swapData) == keccak256(hex"")) vm.expectRevert();
-        zapper.zapAndDoSomething{value: params.amount}(
+        zapper.zap{value: params.amount}(
             params.tokenIn, 
             params.tokenOut, 
             params.router, 
@@ -186,7 +186,7 @@ contract ZapperTest is OffChainCalls {
         _setUpVaultAndZapper();
         _getTokenIn(params);
         vm.expectRevert();
-        zapper.zapAndDoSomething{value: amount}(
+        zapper.zap{value: amount}(
             params.tokenIn, 
             params.tokenOut,
             params.router,
@@ -214,7 +214,7 @@ contract ZapperTest is OffChainCalls {
 
         uint256 value = params.tokenIn == IERC20(_ETH) ? params.amount : 0;
         vm.expectRevert();
-        zapper.zapAndDoSomething{value: value}(
+        zapper.zap{value: value}(
             params.tokenIn,
             params.tokenOut,
             params.router,

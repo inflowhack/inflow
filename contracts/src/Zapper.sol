@@ -30,7 +30,7 @@ contract Zapper is Ownable2Step, Pausable {
         uint256 tokenInBalance
     );
 
-    event ZapAndDoSomething(
+    event Zap(
         address indexed router,
         IERC20 tokenIn,
         uint256 amount
@@ -83,7 +83,7 @@ contract Zapper is Ownable2Step, Pausable {
         emit routerAuthorized(router, authorized);
     }
 
-    function zapAndDoSomething(
+    function zap(
         IERC20 tokenIn,
         IERC20 tokenOut,
         address router,
@@ -118,7 +118,7 @@ contract Zapper is Ownable2Step, Pausable {
             });
         }
 
-        emit ZapAndDoSomething({
+        emit Zap({
             router: router,
             tokenIn: tokenIn,
             amount: amount

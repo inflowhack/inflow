@@ -7,10 +7,13 @@ import {BaseAccount} from "account-abstraction/core/BaseAccount.sol";
 import {UserOperation} from "account-abstraction/interfaces/UserOperation.sol";
 // to validate the signature, can be changed by other signature verification
 import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 // initalizer contract to verify if the signers ( owner of the wallet) are valid and run only once
 import {Initializable} from "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 import {UUPSUpgradeable} from "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
 import {TokenCallbackHandler} from "account-abstraction/samples/callback/TokenCallbackHandler.sol";
+import {Zapper} from "./../Zapper.sol";
+import {BAYCPaymaster} from "./../BAYCPaymaster.sol";
 
 contract Wallet is
     BaseAccount,
@@ -24,6 +27,15 @@ contract Wallet is
     // immutable to keep track of them
     address public immutable walletFactory;
     IEntryPoint private immutable _entryPoint;
+
+    BAYCPaymaster paymaster;
+    bool funded;
+    address zapper;
+
+    modifier onlyAuthenticated() {
+        // add something to authenticate msg.sender
+        _;
+    }
 
     event WalletInitialized(IEntryPoint indexed entryPoint, address[] owners);
     modifier _requireFromEntryPointOrFactory() {
@@ -108,7 +120,22 @@ contract Wallet is
         entryPoint().depositTo{value: msg.value}(address(this));
     }
 
-    receive() external payable {}
+    function swapToSponsoredToken(
+        bytes calldata data
+    ) public onlyAuthenticated {
+        require(funded);
+        Zapper(zapper).zap(
+            IERC20(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE),
+            IERC20(getPaymaster().token()),
+            0x1111111254EEB25477B68fb85Ed929f73A960582, // 1inch router
+            getDeposit(),
+            data
+        );
+    }
+
+    receive() external payable {
+        funded = true;
+    }
 
     //////////////////////EXECUTE//////////////////////////
     function execute(
@@ -129,5 +156,18 @@ contract Wallet is
         for (uint256 i = 0; i < dests.length; i++) {
             _call(dests[i], values[i], funcs[i]);
         }
+    }
+
+    /////////////////////PAYMASTER & ZAPPER //////////////////////////
+    function setPaymaster(BAYCPaymaster _paymaster) external onlyAuthenticated {
+        paymaster = _paymaster;
+    }
+
+    function getPaymaster() public view returns (BAYCPaymaster) {
+        return paymaster;
+    }
+
+    function setZapper(address _zapper) external onlyAuthenticated {
+        zapper = _zapper;
     }
 }

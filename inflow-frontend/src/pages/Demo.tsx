@@ -11,14 +11,7 @@ import { pushProtocol } from "../api/pushProtocol";
 
 const Demo =  () => {
 
-  const handleClick = async () => {
-    // // Define your parameters here
-    // const address = "0xFcf6544597778DA948CE76D148819c612F0e0325";
-    // const amount = "1";
-
-    // Create SDK instance
-    //createEmbedSdkInstance(address, amount);
- 
+  const handleClick = async () => { 
     const { signer, smartAccountAddress } = await accountExecution();
 
     //Console.log

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.19;
 
 // Import the required libraries and contracts
 import "erc20-paymaster-contracts/PimlicoERC20Paymaster.sol";

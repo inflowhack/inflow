@@ -1,4 +1,4 @@
-import { Client, Presets } from "userop";
+import { Presets } from "userop";
 import { ethers } from 'ethers';
 
 

@@ -35,6 +35,7 @@ contract SmartDeploy is Script {
             NATIVE_ASSET_ORACLE
         );
         console.log("BAYCPaymaster address", address(pay));
+        console.log("end");
 
         vm.stopBroadcast(); // Stop broadcasting transactions
     }

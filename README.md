@@ -1,6 +1,6 @@
 # Pay With Inflow -- ETHGlobal IST 2023
 
-## #Next gen Payment infrastructure Protocol for high value assets
+## Next gen Payment infrastructure Protocol for high value assets
 
 ![image](assets/inflow.png)
 
@@ -21,48 +21,53 @@ This project is focus on change the paradygm of account abstraction using instea
 In a single click !!!
 ![image](assets/Inflow%20Flow%20Level.png)
 
--
-
 ## Contracts
 
-### [GOERLI] 🔄
+### [GOERLI] ✅ (verified)
 
-Zapper 0xEbF4E0C45c08466bFbcd3f0D52D51E454AABE6De  
-Wallet_factory 0x91Fc1FA3a78d7F8109372425CA5B7Debd8e395B5  
-BAYC_paymaster 0x36181Fcc5910091B66d8fc1A4b11ED3b877D4588  
+[0x26fdfd62ba753981acc8c7e1a4530c2daaf2a9ad](https://goerli.etherscan.io/address/0x26fdfd62ba753981acc8c7e1a4530c2daaf2a9ad)
+[0x3174ef9ff60eb69a196b98a4c88b1455c285eec8](https://goerli.etherscan.io/address/0x3174ef9ff60eb69a196b98a4c88b1455c285eec8)
+[0x1618030d7b466e0290a20576f7a8bb90ca97782d](https://goerli.etherscan.io/address/0x1618030d7b466e0290a20576f7a8bb90ca97782d)
+[0x43281a23de4F0280A267B440e7b4Cba87679f530](https://goerli.etherscan.io/address/0x43281a23de4F0280A267B440e7b4Cba87679f530)
 
-### [Base Goerli] 🔄
+### [arbitrum sepolia] 🔄 (not verified)
 
-Zapper 0xc9217932acfFeb6019313ff7126365d8aE03AF04  
-Wallet_factory 0xA2eE5D4dbc5e4A717cAccccBF33EEC2c2B943F96  
-BAYC_paymaster 0x1ebFbBD3b97EBDBF946d1781eE559A986098ec98  
+zapper address 0x096e527a20aFd13C1D42280594b083e22a460FE2
+WalletFactory address 0x080083e504f21f7d919c275c666559d0BE94764E
+wallet 0xa2eC24FeF160c0f47533179757A0c868fD7D5df6
+BAYCPaymaster address 0x884211c70D63dc25F25152233B2fDfdf685f638e
 
-### [celo-alfajores] 🔄
+### [Linea testnet] 🔄
 
-Zapper 0xa193dCaA901aeA09d24F79EcC3F8b6A7Dc539e96  
-Wallet_factory 0xaD226670A640DbBE71b3efe669c1fB8617b1e826  
-BAYC_paymaster 0x8303c1A5CBa73c0D27da32A9e13DCaC2819605D2  
+zapper address 0xd0D328F8a9D79DC5cf5c33D7944Ff0da809397DA
+WalletFactory address 0x58d8423BFd366b595ad833a8E943249902e43131
+wallet 0xFC83087671741956C79E5c3e5682767F0D1250c6
+BAYCPaymaster address 0x44C14d92323AA4fdF2f55a0A281fb80BeedEA45F
 
-### [arbitrum-sepolia] 🔄
+### [Scroll testnet] 🔄
 
-Zapper 0xc9217932acfFeb6019313ff7126365d8aE03AF04  
-Wallet_factory 0xA2eE5D4dbc5e4A717cAccccBF33EEC2c2B943F96  
-BAYC_paymaster 0x1ebFbBD3b97EBDBF946d1781eE559A986098ec98  
+zapper address 0xa193dCaA901aeA09d24F79EcC3F8b6A7Dc539e96
+WalletFactory address 0xaD226670A640DbBE71b3efe669c1fB8617b1e826
+wallet 0xb146c2E51d9D2f201a7Ee4626d1dF6a5a7334CeB
+BAYCPaymaster address 0x8303c1A5CBa73c0D27da32A9e13DCaC2819605D2
 
 ### [Mantle testnet] 🔄
 
-Zapper 0xaD226670A640DbBE71b3efe669c1fB8617b1e826  
-Wallet_factory 0x8303c1A5CBa73c0D27da32A9e13DCaC2819605D2  
-BAYC_paymaster 0xaf973187521aAd901a0629D8e6790977cbc0fAEB  
+zapper address 0xA51e1C5D2C186a7B8c3677B74556b5d13974638C
+WalletFactory address 0x01fD771f69a06a1E99e7a6e9aeb7978B44a42093
+wallet 0xA950983c979d71260018c290B51a19eF2932Dc3F
+BAYCPaymaster address 0x7C822a79dC1E8dC38c14e92853c17Cb3CabFDB62
 
-### [Metamask Linea] 🔄
+### [Celo alfajores] 🔄
 
-Zapper 0x43e5515605a8f90763768ab2f7e71801a95dc8dcd92507da3cacc38b2a3411dc
-Wallet_factory 0xaD226670A640DbBE71b3efe669c1fB8617b1e826  
-BAYC_paymaster 0x8303c1A5CBa73c0D27da32A9e13DCaC2819605D2  
+zapper address 0xdB099B30057BaAE5D2E41549899B75dd1373Ce59
+WalletFactory address 0x9e77571ec54832CFC4Bdd7A6a12CFC0A3078F75b
+wallet 0xDA45242f94399Bc499Bc3C65cfd3f6E68b8FA8ee
+BAYCPaymaster address 0x9509c6F6c7CEc0BA84f7E19AaFCD20A1020AA702
 
-### [Scroll] 🔄
+### [Base Goerli] 🔄
 
-Zapper 0x096e527a20aFd13C1D42280594b083e22a460FE2  
-Wallet_factory 0x080083e504f21f7d919c275c666559d0BE94764E  
-BAYC_paymaster 0x884211c70D63dc25F25152233B2fDfdf685f638e  
+zapper address 0xa193dCaA901aeA09d24F79EcC3F8b6A7Dc539e96
+WalletFactory address 0xaD226670A640DbBE71b3efe669c1fB8617b1e826
+wallet 0xb146c2E51d9D2f201a7Ee4626d1dF6a5a7334CeB
+BAYCPaymaster address 0x8303c1A5CBa73c0D27da32A9e13DCaC2819605D2

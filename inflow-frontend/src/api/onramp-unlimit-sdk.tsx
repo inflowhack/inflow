@@ -1,5 +1,5 @@
 import { GateFiDisplayModeEnum, GateFiSDK } from "@gatefi/js-sdk";
-import crypto from 'crypto'
+//import crypto from 'crypto'
 
 // Function to create a new embed SDK instance
 export const createEmbedSdkInstance = () => {
@@ -14,9 +14,6 @@ export const createEmbedSdkInstance = () => {
       walletAddress: import.meta.env.VITE_WALLET, // pv
       styles: {
         type: "dark",
-      },
-      defaultCrypto: {
-        currency: "ETH",
       },
     })
 

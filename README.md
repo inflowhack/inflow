@@ -13,7 +13,7 @@ This project is focus on change the paradygm of account abstraction using instea
 
 - Set up their their smart accounts
 - On ramp through `unlimit` that is sent in the address
-- Automatic swap from some ETH in APECOIN with `1inch fusion`
+- Atomic swap from some ETH in APECOIN with `1inch fusion` + `ERC-4337` Standards
 - Send the transaction to the seller sponsored by our `BAYCPaymaster Contract` that will be payed in ERC20 APECOIN
 
 In a single click !!!

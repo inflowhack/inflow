@@ -1,5 +1,6 @@
 import { Heading, Box, Button } from '@chakra-ui/react';
 import { createEmbedSdkInstance } from '../api/onramp-unlimit';
+import { accountExecution } from '../api/simple-a';
 
 const Demo = () => {
 
@@ -9,8 +10,10 @@ const Demo = () => {
         const amount = "1";
 
         // Create SDK instance
-        const sdkInstance = createEmbedSdkInstance(address, amount);
-        
+        //createEmbedSdkInstance(address, amount);
+
+        // Execute the accountExecution function
+        accountExecution();
     };
 
     return( 

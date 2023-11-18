@@ -14,12 +14,16 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@gatefi/js-sdk": "^0.14.0",
+    "crypto-browserify": "^3.12.0",
+    "ethers": "5",
     "framer-motion": "^10.16.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.19.0"
+    "react-router-dom": "^6.19.0",
+    "userop": "^0.3.4"
   },
   "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
@@ -28,6 +32,7 @@
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
   }

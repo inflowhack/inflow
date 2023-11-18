@@ -5,7 +5,7 @@ libs = ["lib"]
 solc = "0.8.19"
 
 [rpc_endpoints]
-goerli = "${GOERLI_RPC_URL}"
+goerli = "${FOUNDRY_ETH_RPC_URL}"
 goerli_base = "${GOERLI_BASE_RPC_URL}"
 linea = "${LINEA_RPC_URL}"
 celo = "${CELO_TESTNET_RPC_URL}"

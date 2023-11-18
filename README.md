@@ -19,7 +19,7 @@ This project is focus on change the paradygm of account abstraction using instea
 - Send the transaction to the seller sponsored by our `BAYCPaymaster Contract` that will be payed in ERC20 APECOIN
 
 In a single click !!!
-![image](assets/Inflow%20Flow%20Smart%20Contract.png)
+![image](assets/Inflow%20Flow%20Level.png)
 
 -
 

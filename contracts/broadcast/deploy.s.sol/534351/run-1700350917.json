@@ -3,7 +3,7 @@
     {
       "hash": null,
       "transactionType": "CREATE",
-      "contractName": null,
+      "contractName": "Zapper",
       "contractAddress": "0xa193dCaA901aeA09d24F79EcC3F8b6A7Dc539e96",
       "function": null,
       "arguments": null,
@@ -76,7 +76,7 @@
   "libraries": [],
   "pending": [],
   "returns": {},
-  "timestamp": 1700350945,
+  "timestamp": 1700350917,
   "chain": 534351,
   "multi": false,
   "commit": "85f79dc"

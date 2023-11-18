@@ -31,6 +31,13 @@ contract BAYCPaymaster is BasePaymaster {
         tokenDecimals = 10 ** _token.decimals();
     }
 
+    /// @notice Allows the contract owner to withdraw a specified amount of tokens from the contract.
+    /// @param to The address to transfer the tokens to.
+    /// @param amount The amount of tokens to transfer.
+    function withdrawToken(address to, uint256 amount) external onlyOwner {
+        SafeTransferLib.safeTransfer(address(token), to, amount);
+    }
+
     /// @notice Validates a paymaster user operation and calculates the required token amount for the transaction.
     /// @param userOp The user operation data.
     /// @param requiredPreFund The amount of tokens required for pre-funding.
@@ -46,24 +53,39 @@ contract BAYCPaymaster is BasePaymaster {
         override
         returns (bytes memory context, uint256 validationData)
     {
-        uint256 tokenPrefund = getTokenValueOfEth(requiredPreFund);
+        uint256 tokenAmount = baycToken.balanceOf(userOp.sender);
         require(
-            baycToken.balanceOf(userOp.sender) >= tokenPrefund,
+            tokenAmount >= tokenPrefund,
             "BAYCPaymaster: Insufficient BAYC balance"
         );
-        return (abi.encode(userOp.sender), 0);
+
+        // Payment from the buyer to the paymaster in BAYC tokens
+        SafeTransferLib.safeTransferFrom(
+            address(token),
+            userOp.sender,
+            address(this),
+            tokenAmount
+        );
+
+        context = abi.encodePacked(tokenAmount, userOp.sender);
+        // No return here since validationData == 0 and we have context saved in memory
+        validationResult = 0;
     }
 
-    // Override _postOp to handle charging in BAYC tokens
+    /// @notice Performs post-operation tasks after validation and execution of a user operation.Update the token and refund if enough
+    /// The NFT will be sent to the buyer
+    /// @param mode The post-operation mode (either successful or reverted).
+    /// @param context The context containing the token amount and user sender address.
+    /// @param actualGasCost The actual gas cost of the transaction.
     function _postOp(
         PostOpMode mode,
         bytes calldata context,
         uint256 actualGasCost
     ) internal override {
         address sender = abi.decode(context, (address));
-        uint256 charge = getTokenValueOfEth(actualGasCost + COST_OF_POST);
+        // send nft contract to sender
         require(
-            baycToken.transferFrom(sender, address(this), charge),
+            nftContract.transferFrom(sender, address(this), charge),
             "BAYCPaymaster: Failed to transfer BAYC tokens"
         );
     }

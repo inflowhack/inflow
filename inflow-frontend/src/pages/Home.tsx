@@ -1,5 +1,5 @@
 import "./Home.css";
-import { Button, Box, Heading, Image } from "@chakra-ui/react";
+import { Button, Box, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
@@ -32,7 +32,7 @@ function Home() {
          height="50px"
          width="150px"
          onClick={goToDemo}
-         border="none"// Add a border color
+         border="1px solid black"// Add a border color
          _hover={{ border: "1px solid black" }} // Remove the border on hover
         >
         Demo

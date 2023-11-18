@@ -55,8 +55,9 @@ const Demo = () => {
          textColor="black"
          height="50px"
          width="150px"
+         isLoading={false}
          onClick={handleClick}
-         border="none"// Add a border color
+         border="1px solid black"// Add a border color
          _hover={{ border: "1px solid black" }} // Remove the border on hover
         >
         {" "}

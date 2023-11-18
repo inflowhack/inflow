@@ -14,8 +14,10 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@gatefi/js-sdk": "^0.14.0",
+    "@pushprotocol/restapi": "^1.4.38",
+    "@pushprotocol/uiweb": "^1.1.19",
     "crypto-browserify": "^3.12.0",
-    "ethers": "5",
+    "ethers": "^5.7.2",
     "framer-motion": "^10.16.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,8 +25,8 @@
     "userop": "^0.3.4"
   },
   "devDependencies": {
-    "@types/node": "^20.9.1",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@types/node": "^20.9.1",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",

@@ -8,7 +8,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Fonts from "./utils/fonts.tsx";
 import theme from "./utils/theme.tsx";
 
-import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

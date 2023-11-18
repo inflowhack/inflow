@@ -23,7 +23,7 @@ export const accountExecution = async () => {
     const smartAccountAddress = smartAccount.getSender();
     console.log('smart wallet address', smartAccountAddress);
 
-    return smartAccountAddress;
+    return {signer, smartAccountAddress};
     
     // initialize a user op
     /*

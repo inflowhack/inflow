@@ -1,11 +1,11 @@
-import { Presets } from "userop";
+import { Client, Presets } from "userop";
 import { ethers } from 'ethers';
 
 
 export const accountExecution = async () => {
     const privateKey = ethers.Wallet.createRandom().privateKey;
     const signer = new ethers.Wallet(privateKey);
-
+    console.log('signer address', signer.address);
     const bundlerRPCUrl:string = import.meta.env.VITE_BUNDLER_RPC_URL || "";
 
     // peut etre add a try catch block
@@ -20,11 +20,14 @@ export const accountExecution = async () => {
         }
     );
     
-    console.log('smart wallet address', smartAccount.getSender());
     const smartAccountAddress = smartAccount.getSender();
+    console.log('smart wallet address', smartAccountAddress);
 
+    return smartAccountAddress;
+    
     // initialize a user op
-    /* const client = await Client.init(bundlerRPCUrl, { 
+    /*
+    const client = await Client.init(bundlerRPCUrl, { 
         entryPoint: import.meta.env.VITE_ENTRYPOINT,
     });
     
@@ -33,7 +36,8 @@ export const accountExecution = async () => {
     );
     
     const event = await result.wait();
-    console.log(`Transaction hash: ${event?.transactionHash}`);  */
+    console.log(`Transaction hash: ${event?.transactionHash}`); 
+     */
 
-    return {signer, smartAccountAddress};
+    
 };

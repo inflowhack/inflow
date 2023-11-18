@@ -1,37 +1,25 @@
 import { Heading, Box, Button, Card, Image } from "@chakra-ui/react";
+import { createEmbedSdkInstance } from "../api/onramp-unlimit";
+import { accountExecution } from "../api/simple-a";
 import product from "../assets/product.png";
-import Apple_logo_black from "../assets/Apple_logo_black.svg";
-import flowRound from "../assets/flowRound.png";
-import { PushAPI } from "@pushprotocol/restapi";
-import { ethers } from "ethers";
-import { accountExecution } from "../api/simple-a.tsx";
-import { NotificationItem, chainNameType } from "@pushprotocol/uiweb";
 
 
-const Demo = async () => {
-  const { signer, smartAccountAddress } = await accountExecution();
-  const userA = await PushAPI.initialize(signer);
-  const inboxNotifications = await userA.notification.list( 'INBOX' )
-  const spamNotifications = await userA.notification.list( 'SPAM' )
-  const pushChannelAdress = '0×B88460Bb2696CAb9D66013A05dFF29a28330689D'
-  await userA.notification.subscribe(
-    `eip155:11155111:${pushChannelAdress}` // channel address in CAIP format
-  ) 
-  await userA.notification.subscribe(
-      `eip155:11155111:${pushChannelAdress}` // channel address in CAIP format
-  )
-
+const Demo = () => {
   const handleClick = () => {
-    // // Define your parameters here
-    // const address = "0xFcf6544597778DA948CE76D148819c612F0e0325";
-    // const amount = "1";
+    // Define your parameters here
+    const address = "0xFcf6544597778DA948CE76D148819c612F0e0325";
+    const amount = "1";
 
     // Create SDK instance
     //createEmbedSdkInstance(address, amount);
  
     // Execute the accountExecution function
-    console.log(signer)
-    console.log(smartAccountAddress)
+    const address =  await accountExecution();
+    
+    // create sdk instance
+    createOverlaySdkInstance(address);
+
+
 
     // is the smartAccountAddress is not defined, it means it's still loading, and the state isLoading = true 
     //else the smartAccountAddress is defined, it means the smart account has been created. Is loading = false and a push notification can be sent " your smart account has been created to this address ${smartAccountAddress}"

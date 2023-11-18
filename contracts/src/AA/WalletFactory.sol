@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.19;
 
-import {IEntryPoint} from "account-abstraction/interfaces/IEntryPoint.sol";
+import {IEntryPoint} from "@account-abstraction/contracts/interfaces/IEntryPoint.sol";
 import {Wallet} from "./Wallet.sol";
+import {Zapper} from "./../Zapper.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import {Create2} from "@openzeppelin/contracts/utils/Create2.sol";
 
 contract WalletFactory {
     Wallet public immutable walletImplementation;
 
-    constructor(IEntryPoint entryPoint) {
+    constructor(IEntryPoint entryPoint, Zapper zapper) {
         walletImplementation = new Wallet(entryPoint, address(this));
+        walletImplementation.setZapper(zapper);
     }
 
     function getAddress(

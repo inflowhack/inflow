@@ -114,7 +114,7 @@ contract Zapper is Ownable2Step, Pausable {
             );
         }
 
-        //tokenOut.safeTransfer(msg.sender, tokenOut.balanceOf(address(this)));
+        tokenOut.safeTransfer(msg.sender, tokenOut.balanceOf(address(this)));
     }
 
     function _transferTokenInAndApprove(

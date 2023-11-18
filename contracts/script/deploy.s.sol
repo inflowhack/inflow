@@ -24,8 +24,17 @@ contract SmartDeploy is Script {
         vm.startBroadcast(deployerPrivateKey); // Start broadcasting transactions
 
         Zapper zapper = new Zapper();
-        new WalletFactory(ENTRYPOINT, zapper); // Initialize the WalletFactory contract
-        new BAYCPaymaster(APE, ENTRYPOINT, APEUSD_ORACLE, NATIVE_ASSET_ORACLE);
+        console.log("zapper address", address(zapper));
+        WalletFactory wF = new WalletFactory(ENTRYPOINT, zapper); // Initialize the WalletFactory contract
+        console.log("WalletFactory address", address(wF));
+        console.log("wallet", address(wF.walletImplementation()));
+        BAYCPaymaster pay = new BAYCPaymaster(
+            APE,
+            ENTRYPOINT,
+            APEUSD_ORACLE,
+            NATIVE_ASSET_ORACLE
+        );
+        console.log("BAYCPaymaster address", address(pay));
 
         vm.stopBroadcast(); // Stop broadcasting transactions
     }

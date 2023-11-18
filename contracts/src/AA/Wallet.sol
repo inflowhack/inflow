@@ -119,6 +119,7 @@ contract Wallet is
         entryPoint().depositTo{value: msg.value}(address(this));
     }
 
+    // in one function the SCW can do a fusion swap
     function swapTokenWith1Inch(
         IERC20 tokenIn,
         IERC20 tokenOut,
@@ -126,9 +127,9 @@ contract Wallet is
         bytes calldata data
     ) public onlyAuthenticated {
         require(funded);
-        Zapper(zapper).zap(
+        Zapper(zapper).zap{value: amount}(
             tokenIn, // IERC20(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE), // ether
-            tokenOut, // APE/SDAI
+            tokenOut, // APE
             0x1111111254EEB25477B68fb85Ed929f73A960582, // 1inch router
             amount,
             data

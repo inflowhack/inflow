@@ -1,5 +1,5 @@
 import { Heading, Box, Button } from '@chakra-ui/react';
-import { createEmbedSdkInstance } from '../api/onramp-unlimit';
+//import { createEmbedSdkInstance } from '../api/onramp-unlimit';
 import { accountExecution } from '../api/simple-a';
 
 const Demo = () => {

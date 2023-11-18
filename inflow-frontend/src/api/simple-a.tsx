@@ -17,13 +17,12 @@ export const accountExecution = async () => {
         bundlerRPCUrl,
         {  
             entryPoint: import.meta.env.VITE_ENTRYPOINT,
-            factory: import.meta.env.VITE_WALLETFACTORY_CONTRACT,
         }
     );
     
     console.log('smart wallet address', smartAccount.getSender());
 
-
+    // initialize a user op
     const client = await Client.init(bundlerRPCUrl, { 
         entryPoint: import.meta.env.VITE_ENTRYPOINT,
     });

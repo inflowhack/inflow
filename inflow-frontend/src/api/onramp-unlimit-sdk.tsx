@@ -3,7 +3,8 @@ import crypto from 'crypto'
 
 // Function to create a new embed SDK instance
 export const createEmbedSdkInstance = () => {
-  const randomString = crypto.randomBytes(32).toString("hex");
+/*   const randomString = crypto.randomBytes(32).toString("hex");
+ */   
   try {
     const embedInstanceSDK = new GateFiSDK({
       merchantId: import.meta.env.VITE_MERCHANT, // pv 
@@ -11,11 +12,8 @@ export const createEmbedSdkInstance = () => {
       nodeSelector: "#overlay-button",
       isSandbox: true,
       walletAddress: import.meta.env.VITE_WALLET, // pv
-      email: import.meta.env.VITE_MAIL, // pv
-      externalId: randomString,
-      defaultFiat: {
-        currency: "USD",
-        amount: "100",
+      styles: {
+        type: "dark",
       },
       defaultCrypto: {
         currency: "ETH",

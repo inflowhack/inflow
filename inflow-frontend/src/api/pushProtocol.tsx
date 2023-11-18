@@ -1,4 +1,4 @@
-import { PushAPI, CONSTANTS } from "@pushprotocol/restapi";
+import { PushAPI } from "@pushprotocol/restapi";
 import { ethers } from "ethers";
 import { accountExecution } from "./simple-aa";
 

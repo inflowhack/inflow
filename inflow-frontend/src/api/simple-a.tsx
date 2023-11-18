@@ -23,7 +23,7 @@ export const accountExecution = async () => {
     console.log('smart wallet address', smartAccount.getSender());
 
     // initialize a user op
-    const client = await Client.init(bundlerRPCUrl, { 
+    /* const client = await Client.init(bundlerRPCUrl, { 
         entryPoint: import.meta.env.VITE_ENTRYPOINT,
     });
     
@@ -32,7 +32,7 @@ export const accountExecution = async () => {
     );
     
     const event = await result.wait();
-    console.log(`Transaction hash: ${event?.transactionHash}`); 
+    console.log(`Transaction hash: ${event?.transactionHash}`);  */
 
     
 };

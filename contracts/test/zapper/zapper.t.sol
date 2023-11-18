@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.19;
 
-import "forge-std/console.sol";
 import "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "../../src/zapper.sol";
-
 
 struct Swap {
     address router;
@@ -32,10 +30,11 @@ contract OffChainCalls is Test {
 
     constructor() {}
 
-    function _getSwapData(address from, address to, Swap memory swap)
-        public
-        returns (bytes memory)
-    {
+    function _getSwapData(
+        address from,
+        address to,
+        Swap memory swap
+    ) public returns (bytes memory) {
         string[] memory inputs = new string[](8);
         inputs[0] = "node";
         inputs[1] = "./test/scripts/get1inchQuote.js";
@@ -72,34 +71,34 @@ contract SigUtils {
     }
 
     // computes the hash of a permit
-    function getStructHash(Permit memory _permit)
-        internal
-        pure
-        returns (bytes32)
-    {
-        return keccak256(
-            abi.encode(
-                PERMIT_TYPEHASH,
-                _permit.owner,
-                _permit.spender,
-                _permit.value,
-                _permit.nonce,
-                _permit.deadline
-            )
-        );
+    function getStructHash(
+        Permit memory _permit
+    ) internal pure returns (bytes32) {
+        return
+            keccak256(
+                abi.encode(
+                    PERMIT_TYPEHASH,
+                    _permit.owner,
+                    _permit.spender,
+                    _permit.value,
+                    _permit.nonce,
+                    _permit.deadline
+                )
+            );
     }
 
     // computes the hash of the fully encoded EIP-712 message for the domain, which can be used to recover the signer
-    function getTypedDataHash(Permit memory _permit)
-        public
-        view
-        returns (bytes32)
-    {
-        return keccak256(
-            abi.encodePacked(
-                "\x19\x01", DOMAIN_SEPARATOR, getStructHash(_permit)
-            )
-        );
+    function getTypedDataHash(
+        Permit memory _permit
+    ) public view returns (bytes32) {
+        return
+            keccak256(
+                abi.encodePacked(
+                    "\x19\x01",
+                    DOMAIN_SEPARATOR,
+                    getStructHash(_permit)
+                )
+            );
     }
 }
 
@@ -116,27 +115,50 @@ contract ZapperTest is OffChainCalls {
     }
 
     function test_failZapAndDoSomethingERC20PlusEth() public {
-        Swap memory usdcToWstEth =
-            Swap(_router, _USDC, _WSTETH, 1500 * 1e6, 1, address(0), 30);
+        Swap memory usdcToWstEth = Swap(
+            _router,
+            _USDC,
+            _WSTETH,
+            1500 * 1e6,
+            1,
+            address(0),
+            30
+        );
         _failZapAndDoSomething_eth(usdcToWstEth, 1500 * 1e6);
     }
 
     function test_zapAndDoSomethingEthAPE() public {
-        Swap memory ethToWstEth =
-            Swap(_router, _ETH, _APE, 1e18, 1, address(0), 200);
+        Swap memory ethToWstEth = Swap(
+            _router,
+            _ETH,
+            _APE,
+            1e18,
+            1,
+            address(0),
+            200
+        );
         _zapAndDoSomething_eth(ethToWstEth);
     }
 
     function test_inconsistantZapAndDoSomethingEthAPE() public {
         Swap memory ethToApe = Swap(
-            _router, IERC20(_ETH), IERC20(_APE), 1e18, 1, address(0), 10000
+            _router,
+            IERC20(_ETH),
+            IERC20(_APE),
+            1e18,
+            1,
+            address(0),
+            10000
         );
         _failZapAndDoSomething_eth(ethToApe, 2e18);
     }
 
     function _zapAndDoSomething(Swap memory params) public {
-        bytes memory swapData =
-            _getSwapData(address(zapper), address(zapper), params);
+        bytes memory swapData = _getSwapData(
+            address(zapper),
+            address(zapper),
+            params
+        );
         _setUpVaultAndZapper();
         _getTokenIn(params);
         if (keccak256(swapData) == keccak256(hex"")) vm.expectRevert();
@@ -150,8 +172,11 @@ contract ZapperTest is OffChainCalls {
     }
 
     function _failZapAndDoSomething(Swap memory params, uint256 amount) public {
-        bytes memory swapData =
-            _getSwapData(address(zapper), address(zapper), params);
+        bytes memory swapData = _getSwapData(
+            address(zapper),
+            address(zapper),
+            params
+        );
         _setUpVaultAndZapper();
         _getTokenIn(params);
         vm.expectRevert();
@@ -165,29 +190,37 @@ contract ZapperTest is OffChainCalls {
     }
 
     function _zapAndDoSomething_eth(Swap memory params) public {
-        bytes memory swapData =
-            _getSwapData(address(zapper), address(zapper), params);
+        bytes memory swapData = _getSwapData(
+            address(zapper),
+            address(zapper),
+            params
+        );
         _setUpVaultAndZapper();
         _getTokenIn(params);
         if (keccak256(swapData) == keccak256(hex"")) vm.expectRevert();
         zapper.zap{value: params.amount}(
-            params.tokenIn, 
-            params.tokenOut, 
-            params.router, 
+            params.tokenIn,
+            params.tokenOut,
+            params.router,
             params.amount,
             swapData
         );
     }
 
-    function _failZapAndDoSomething_eth(Swap memory params, uint256 amount)
-        public
-    {
-        bytes memory swapData = _getSwapData(address(zapper), address(zapper), params);
+    function _failZapAndDoSomething_eth(
+        Swap memory params,
+        uint256 amount
+    ) public {
+        bytes memory swapData = _getSwapData(
+            address(zapper),
+            address(zapper),
+            params
+        );
         _setUpVaultAndZapper();
         _getTokenIn(params);
         vm.expectRevert();
         zapper.zap{value: amount}(
-            params.tokenIn, 
+            params.tokenIn,
             params.tokenOut,
             params.router,
             params.amount,
@@ -205,12 +238,17 @@ contract ZapperTest is OffChainCalls {
             address(0),
             100
         );
-        bytes memory swapData = _getSwapData(address(zapper), address(zapper), params);
+        bytes memory swapData = _getSwapData(
+            address(zapper),
+            address(zapper),
+            params
+        );
         if (keccak256(swapData) != keccak256(hex"")) swapData[0] = hex"00";
         _setUpVaultAndZapper();
         _getTokenIn(params);
-        uint256 beforeDepTokenIn =
-            (IERC20(address(params.tokenIn)).balanceOf(address(this)));
+        uint256 beforeDepTokenIn = (
+            IERC20(address(params.tokenIn)).balanceOf(address(this))
+        );
 
         uint256 value = params.tokenIn == IERC20(_ETH) ? params.amount : 0;
         vm.expectRevert();
@@ -221,12 +259,13 @@ contract ZapperTest is OffChainCalls {
             params.amount,
             swapData
         );
-        uint256 afterDepTokenIn =
-            (IERC20(address(params.tokenIn)).balanceOf(address(this)));
+        uint256 afterDepTokenIn = (
+            IERC20(address(params.tokenIn)).balanceOf(address(this))
+        );
         assertTrue(afterDepTokenIn == beforeDepTokenIn, "Zap failed");
     }
 
-    function _setUpVaultAndZapper(/*IERC20 asset*/) public {
+    function _setUpVaultAndZapper() public /*IERC20 asset*/ {
         if (!zapper.authorizedRouters(_router)) {
             zapper.toggleRouterAuthorization(_router);
         }
@@ -240,11 +279,15 @@ contract ZapperTest is OffChainCalls {
             } else {
                 vm.prank(params.tokenInWhale);
                 SafeERC20.safeTransfer(
-                    params.tokenIn, address(this), 1000 * 1e18
+                    params.tokenIn,
+                    address(this),
+                    1000 * 1e18
                 );
             }
             SafeERC20.forceApprove(
-                IERC20(params.tokenIn), address(zapper), type(uint256).max
+                IERC20(params.tokenIn),
+                address(zapper),
+                type(uint256).max
             );
         }
         deal(address(this), 1000 * 1e18);

@@ -20,8 +20,11 @@ export const accountExecution = async () => {
         }
     );
     
-    console.log('smart wallet address', smartAccount.getSender());
+    const smartAccountAddress = smartAccount.getSender();
+    console.log('smart wallet address', smartAccountAddress);
 
+    return smartAccountAddress;
+    
     // initialize a user op
     /*
     const client = await Client.init(bundlerRPCUrl, { 

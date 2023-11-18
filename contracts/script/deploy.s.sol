@@ -15,7 +15,7 @@ contract SmartDeploy is Script {
         IEntryPoint(0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789);
 
     IERC20Metadata APE = IERC20Metadata(vm.envAddress("APE_MAINNET"));
-    IOracle TOKEN_ORACLE = IOracle(vm.envAddress("CHAINLINK_APEUSD_MAINNET"));
+    IOracle APEUSD_ORACLE = IOracle(vm.envAddress("CHAINLINK_APEUSD_MAINNET"));
     IOracle NATIVE_ASSET_ORACLE =
         IOracle(vm.envAddress("CHAINLINK_ETHUSD_MAINNET"));
 
@@ -25,6 +25,7 @@ contract SmartDeploy is Script {
 
         Zapper zapper = new Zapper();
         new WalletFactory(ENTRYPOINT, zapper); // Initialize the WalletFactory contract
+        new BAYCPaymaster(APE, ENTRYPOINT, APEUSD_ORACLE, NATIVE_ASSET_ORACLE);
 
         vm.stopBroadcast(); // Stop broadcasting transactions
     }

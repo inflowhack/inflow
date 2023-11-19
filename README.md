@@ -2,7 +2,7 @@
 
 ## Next gen Decentralized Payment Infrastructure for high value assets
 
-![image](assets/inflow.png)
+![image](assets/inflowRemovebg.jpg)
 
 # Table of Contents
 

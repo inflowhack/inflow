@@ -1,4 +1,4 @@
-import { Heading, Box, Button, Card, Image } from "@chakra-ui/react";
+import { Heading, Box, Button, Card, Image, Spinner } from "@chakra-ui/react";
 import product from "../assets/product.png";
 import Apple_logo_black from "../assets/Apple_logo_black.svg";
 import flowRound from "../assets/flowRound.png";
@@ -9,26 +9,22 @@ import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Demo = () => {
   const [isLoading, setLoading] = useState(false);
 
   const handleClick = async () => {
-
     //Catching the notification from the wallet creation
     // const { targetedNotif, inboxNotifications } =
     //   await PushNotification();
     const { smartAccountAddress } = await accountExecution();
     setLoading(true);
-    
-    //if createOverlaySdkInstance is in error 
+
+    //if createOverlaySdkInstance is in error
     createOverlaySdkInstance(smartAccountAddress);
 
-    console.log(createOverlaySdkInstance); 
+    console.log(createOverlaySdkInstance);
     isLoading ? console.log("loading") : console.log("not loading");
-    
-    // is the smartAccountAddress is not defined, it means it's still loading, and the state isLoading = true
-    //else the smartAccountAddress is defined, it means the smart account has been created. Is loading = false and a push notification can be sent " your smart account has been created to this address ${smartAccountAddress}"
+
     const notify = () =>
       toast(`Your smart account has been created ${smartAccountAddress}`, {
         position: "bottom-left",
@@ -41,8 +37,6 @@ const Demo = () => {
         theme: "dark",
       });
     notify();
-
-
   };
 
   // Use
@@ -92,8 +86,14 @@ const Demo = () => {
             flexDirection="row"
             alignItems="center"
           >
-            <Image src={flowRound} alt="Flow Pay" boxSize="30px" />
-            <Heading>Pay</Heading>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <>
+                <Image src={flowRound} alt="Flow Pay" boxSize="30px" />
+                <Heading>Pay</Heading>
+              </>
+            )}
           </Box>
         </Button>
         <Button

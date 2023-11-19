@@ -5,7 +5,7 @@ import flowRound from "../assets/flowRound.png";
 import { createOverlaySdkInstance } from "../api/onramp-unlimit-sdk";
 import { accountExecution } from "../api/simple-aa";
 // import { PushNotification } from "../api/pushProtocol";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react";
 import { CheckIcon } from "@chakra-ui/icons";
 
@@ -17,7 +17,7 @@ const Demo = () => {
   const [isTimeOut, setTimeOut] = useState(false);
 
   useEffect(() => {
-    isTimeOut ? setLoading(false) : console.log("not loading");
+    isTimeOut ? setLoading(false) : console.log(" loading");
   }
   , [isTimeOut]);
   // create a timer to simulate the loading time
@@ -40,6 +40,7 @@ const Demo = () => {
     console.log(createOverlaySdkInstance);
     isLoading ? console.log("loading") : console.log("not loading");
 
+    if (smartAccountAddress){
     const notify = () =>
       toast(`Your smart account has been created ${smartAccountAddress}`, {
         position: "bottom-left",
@@ -52,7 +53,24 @@ const Demo = () => {
         theme: "dark",
       });
     notify();
-  };
+    }
+
+    if (isTimeOut){
+    const notifySuccess = () =>
+      toast(`✅ Payment successful`, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    notifySuccess();
+  }
+}; 
+
 
   // Use
   return (
@@ -110,6 +128,9 @@ const Demo = () => {
               ) : (
                 <CheckIcon
                 boxSize={8} />
+                
+             
+                
               )
             ) : (
               <>
@@ -141,9 +162,7 @@ const Demo = () => {
             <Heading> Pay</Heading>
           </Box>
         </Button>
-      </Box>
-
-      <ToastContainer
+        <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -157,6 +176,9 @@ const Demo = () => {
       />
       {/* Same as */}
       <ToastContainer />
+      </Box>
+
+     
     </Box>
   );
 };

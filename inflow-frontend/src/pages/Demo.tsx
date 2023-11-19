@@ -6,8 +6,9 @@ import { createOverlaySdkInstance } from "../api/onramp-unlimit-sdk";
 import { accountExecution } from "../api/simple-aa";
 // import { PushNotification } from "../api/pushProtocol";
 import { ToastContainer, toast } from "react-toastify";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CheckIcon } from "@chakra-ui/icons";
+
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,6 +16,10 @@ const Demo = () => {
   const [isLoading, setLoading] = useState(false);
   const [isTimeOut, setTimeOut] = useState(false);
 
+  useEffect(() => {
+    isTimeOut ? setLoading(false) : console.log("not loading");
+  }
+  , [isTimeOut]);
   // create a timer to simulate the loading time
   const timer = setTimeout(() => {
     setTimeOut(true);
@@ -98,9 +103,13 @@ const Demo = () => {
           >
             {isLoading || isTimeOut ? (
               isLoading ? (
-                <Spinner />
+                <Spinner 
+                thickness="3px"
+                boxSize={8}
+                   />
               ) : (
-                <CheckIcon />
+                <CheckIcon
+                boxSize={8} />
               )
             ) : (
               <>

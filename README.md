@@ -21,7 +21,7 @@ This project is focus on change the paradygm of account abstraction using instea
 
 <center><u>In a single click !!!</u></center>
 
-![image](assets/Inflow%20Flow%20Level.png)
+![image](assets/InflowFlowLevel.png)
 
 ## Contracts
 

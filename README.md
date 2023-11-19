@@ -1,6 +1,6 @@
 # Pay With Inflow -- ETHGlobal IST 2023
 
-## Next gen Payment infrastructure Protocol for high value assets
+## Next gen Decentralized Payment Infrastructure for high value assets
 
 ![image](assets/inflow.png)
 

@@ -1,4 +1,4 @@
-# Pay With Inflow -- ETHGlobal IST 2023
+# Pay With Inflow - ETHGlobal IST 2023 🇹🇳
 
 ## Next gen Decentralized Payment Infrastructure for high value assets
 

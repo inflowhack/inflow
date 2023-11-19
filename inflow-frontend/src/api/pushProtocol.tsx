@@ -1,5 +1,4 @@
 import { PushAPI } from "@pushprotocol/restapi";
-import { ethers } from "ethers";
 import { accountExecution } from "./simple-aa";
 
 
@@ -13,10 +12,10 @@ export const PushNotification = async () => {
     //to send a targeted notification - pass that single wallet address in recipients array
     const targetedNotif = await userAlice.channel.send( [signer.address], {
         notification: {
-            title: 'test',
-            body: 'test'
+            title: 'You have a new notification !',
+            body: 'Account Abstraction created ${signet.address}'
         },
     })
 
-    return {userAlice, inboxNotifications, spamNotifications, targetedNotif};
+    return { targetedNotif, inboxNotifications, spamNotifications}
 }

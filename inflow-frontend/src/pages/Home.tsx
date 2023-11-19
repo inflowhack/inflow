@@ -7,7 +7,6 @@ function Home() {
   const history = useNavigate();
 
   const goToDemo = () => {
-    console.log("go to demo");
     history("/demo");
   };
 

@@ -13,6 +13,7 @@
 
 This project is focus on change the paradygm of account abstraction using instead being focus on onboarding, we'll be more concentrate on the why and create the how around that. With this Inflow offers seamless web3 payment experience where web2 users can buy high value assets (raffle shoes from collabs, new luxury brands and even pieces of arts). (web2) Users can buys for instance a bored ape yatch watch, with inflow it will :
 
+- Init the interaction between the real world and blockchain through `Arx`
 - Set up their their smart accounts
 - On ramp through `unlimit` that is sent in the address
 - Atomic swap from some ETH in APECOIN with `1inch fusion` + `ERC-4337` Standards

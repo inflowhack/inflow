@@ -13,39 +13,19 @@ import "react-toastify/dist/ReactToastify.css";
 const Demo = () => {
   const [isLoading, setLoading] = useState(false);
 
-    const handleClick = async () => {
-      try{
-        //Catching the notification from the wallet creation
-        //The probleme is that it doesnt read the account abstraction address
-        // const { targetedNotif, inboxNotifications } =
-        // await PushNotification();
-          //Catching the notification from the wallet creation
-          const { smartAccountAddress } = await accountExecution();
-   
-          createOverlaySdkInstance(smartAccountAddress);
-   
-          if (createOverlaySdkInstance === undefined) {
-              console.log("Loading");
-              setLoading(true);
-            } else {
-              console.log("Not loading");
-              setLoading(false);
-          }
-  
-        } catch (error) {
-          if (error instanceof Error) {
-            if (error.message.includes("GateFiSDK: GateFiSDK with 'overlay' display mode already exist")) {
-              console.log("Loading");
-              setLoading(true);
-            } else {
-              console.log("Error: ", error.message);
-            }
-          } else {
-            console.log('Unexpected error', error);
-          }
-         }
-         
+  const handleClick = async () => {
 
+    //Catching the notification from the wallet creation
+    // const { targetedNotif, inboxNotifications } =
+    //   await PushNotification();
+    const { smartAccountAddress } = await accountExecution();
+    setLoading(true);
+    
+    //if createOverlaySdkInstance is in error 
+    createOverlaySdkInstance(smartAccountAddress);
+
+    console.log(createOverlaySdkInstance); 
+    isLoading ? console.log("loading") : console.log("not loading");
     
     // is the smartAccountAddress is not defined, it means it's still loading, and the state isLoading = true
     //else the smartAccountAddress is defined, it means the smart account has been created. Is loading = false and a push notification can be sent " your smart account has been created to this address ${smartAccountAddress}"
@@ -61,7 +41,9 @@ const Demo = () => {
         theme: "dark",
       });
     notify();
-  }
+
+
+  };
 
   // Use
   return (

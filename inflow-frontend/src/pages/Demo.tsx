@@ -7,13 +7,18 @@ import { accountExecution } from "../api/simple-aa";
 // import { PushNotification } from "../api/pushProtocol";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
+import { CheckIcon } from "@chakra-ui/icons";
+
 import "react-toastify/dist/ReactToastify.css";
 
 const Demo = () => {
   const [isLoading, setLoading] = useState(false);
+  const [isTimeOut, setTimeOut] = useState(false);
 
   // create a timer to simulate the loading time
-  
+  const timer = setTimeout(() => {
+    setTimeOut(true);
+  }, 60000);
 
   const handleClick = async () => {
     //Catching the notification from the wallet creation
@@ -24,6 +29,8 @@ const Demo = () => {
 
     //if createOverlaySdkInstance is in error
     createOverlaySdkInstance(smartAccountAddress);
+
+    clearTimeout(timer);
 
     console.log(createOverlaySdkInstance);
     isLoading ? console.log("loading") : console.log("not loading");
@@ -89,8 +96,12 @@ const Demo = () => {
             flexDirection="row"
             alignItems="center"
           >
-            {isLoading ? (
-              <Spinner />
+            {isLoading || isTimeOut ? (
+              isLoading ? (
+                <Spinner />
+              ) : (
+                <CheckIcon />
+              )
             ) : (
               <>
                 <Image src={flowRound} alt="Flow Pay" boxSize="30px" />

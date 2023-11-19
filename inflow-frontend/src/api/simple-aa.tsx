@@ -5,7 +5,6 @@ import { ethers } from 'ethers';
 export const accountExecution = async () => {
     const privateKey = ethers.Wallet.createRandom().privateKey;
     const signer = new ethers.Wallet(privateKey);
-    console.log('signer address', signer.address);
     const bundlerRPCUrl:string = import.meta.env.VITE_BUNDLER_RPC_URL || "";
 
     // peut etre add a try catch block

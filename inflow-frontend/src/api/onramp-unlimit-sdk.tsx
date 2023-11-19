@@ -2,7 +2,6 @@ import { GateFiDisplayModeEnum, GateFiSDK } from "@gatefi/js-sdk";
 
 // Function to create a new embed SDK instance
 export const createOverlaySdkInstance = (address:string) => {
-//  const randomString = crypto.randomBytes(32).toString("hex");
 
   try {
     const embedInstanceSDK = new GateFiSDK({

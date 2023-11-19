@@ -12,6 +12,9 @@ import "react-toastify/dist/ReactToastify.css";
 const Demo = () => {
   const [isLoading, setLoading] = useState(false);
 
+  // create a timer to simulate the loading time
+  
+
   const handleClick = async () => {
     //Catching the notification from the wallet creation
     // const { targetedNotif, inboxNotifications } =
